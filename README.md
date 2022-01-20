@@ -31,3 +31,13 @@
 
   ```
   
+### 01.19
+* emotion, material ui 라이브러리 사용해서 간단한 체크박스 기능 구현, CRA로 초기세팅함
+* 회원가입시 약관동의하는 페이지 처럼 만듬
+* 전체 동의 선택시 전체 체크박스 체크됨, 체크박스 전부 동의함 체크하면 전체 전체동의 체크박스 체크되게 구현함 -> every함수 사용
+```javascript
+  const AllCheck = useMemo(
+     () => checkboxList.every((checkboxItem) => checkboxItem.checked)
+  ,[checkboxList]);
+```
+* useMemo, useCallback이용해서 chekboxList상태가 변할때면 렌더링되게 최적화
