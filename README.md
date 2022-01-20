@@ -41,3 +41,29 @@
   ,[checkboxList]);
 ```
 * useMemo, useCallback이용해서 chekboxList상태가 변할때면 렌더링되게 최적화
+
+
+### 01.20
+* 영화 리스트 검색 프로그램 구현
+* emotion, material ui, naver 검색 api 사용
+* 외부api 받아올 때 fetAPI사용
+* 영화 제목 인풋으로 받아서 props로 넘겨줄 때 함수에 파라미터가 필요해서 콜백으로 한번 감싸서 넘김
+```js
+  const handleSearch = ()=>{
+        console.log('test');
+        callApiGetMovieList(inputValue);
+    };
+```
+* 파라미터 넘길 때 .bind()하는 방법도 있음 콜백넘기는게 더 가독성이 좋은 듯하다
+* 검색하는 부분 useCallback으로 감싸니까 에러남 내일 해결예정
+* 인풋 상태관리할 때 onChange할 때마다 리렌더링 됨 이것도 내일 최적화 할 예정
+```js
+// 현재 방법
+const [inputValue, setInputValue] = useState('');
+const onChangeInputValue = (e) => {
+        setInputValue(e.target.value);
+}
+return (
+<SearchBox handleSearch={handleSearch} onChangeInputValue={onChangeInputValue} />
+ )
+```
