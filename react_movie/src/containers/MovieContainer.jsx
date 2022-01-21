@@ -3,7 +3,6 @@ import { requestGetMovieList } from '../apis/fetch';
 import AppendButton from '../components/AppendButton/AppendButton';
 import Checkbox from '../components/Checkbox/Checkbox';
 import DeleteButton from '../components/DeleteButton/DeleteButton';
-import InputBox from '../components/input/InputBox';
 import SearchBox from '../components/input/SearchBox';
 
 import Loading from '../components/Loading';
@@ -15,7 +14,7 @@ const MovieContainer = () => {
     // 상태 정의(로딩상태, 영화리스트)
     const [loading, setLoading] = useState(false);
     const [movieList, setMovieList] = useState([]);
-    const [inputValue, setInputValue] = useState('');
+    const [inputValue, setInputValue] = useState('어벤져스');
 
     // 전체 체크박스 every함수로 관찰
     const AllChecked = useMemo(() => {
@@ -70,20 +69,21 @@ const MovieContainer = () => {
         callApiGetMovieList('어벤져스');
     },[])
 
-    const onChangeInputValue = (e) => {
-        setInputValue(e.target.value);
-    }
 
     const handleSearch = ()=>{
-        console.log('test');
         callApiGetMovieList(inputValue);
+    };
+
+    const handleSetValue = (name) => {
+        console.log('!!!setValueRerendering!!!');
+        setInputValue(name);
     };
 
     return (
         <div>
             <SearchBox 
-                handleSearch={handleSearch}
-                onChangeInputValue={onChangeInputValue}
+                getAPI={callApiGetMovieList}
+                setValue = {handleSetValue}
             />
             <StyleMovieAllCheckArea>
                 <StyleMovieAllCheckText checked={AllChecked}>
