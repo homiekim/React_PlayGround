@@ -105,7 +105,7 @@ export default SearchBox;
 * 에러 핸들링
   - input태그 대신 material ui에서 TextField 가져왔는데 이건 React.createRef 동작안함 콘솔 찍어 보니까 undefined뜸
   - https://stackoverflow.com/questions/59647940/how-can-i-use-ref-in-textfield 이거 글보고 해결함 useRef 하고 inputRef={} 이런식으로 하니까 동작함
-  - material ui icon 처음 써봤는데 디자인 하는데 안익숙했음 개발자도구 보니까 <svg> 태그 안에 <path>태그가 있는 방식이였음 추후에 jpg,svg,png 차이점 공부해야 겠음
+  - material ui icon 처음 써봤는데 디자인 하는데 안익숙했음 개발자도구 보니까 svg 태그 안에 path태그가 있는 방식이였음 추후에 jpg,svg,png 차이점 공부해야 겠음
   - 검색하는 fetch함수에서 파라미터로 name값 받는데 콜백함수에 넣어서 파라미터 넘겨 주는 방식으로 코딩했는데 이게 submit할때 에러남
   ```js
     const onSubmit = (e) => {
