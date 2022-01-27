@@ -1,10 +1,6 @@
 import React from "react";
 
 const Header = ({
-  answer,
-  answerColor,
-  baseColor,
-  isPlaying,
   score,
   stage,
   time,

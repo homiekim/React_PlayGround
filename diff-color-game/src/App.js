@@ -1,16 +1,37 @@
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import "./App.css";
 import Board from "./components/board";
 import Header from "./components/header";
 
-function getRandomColor() {
-  // 1~255 사이 숫자 중에서 난수 생성
+const getBaseColor = () => {
   const ran1 = Math.floor(Math.random() * 255 + 1);
   const ran2 = Math.floor(Math.random() * 255 + 1);
   const ran3 = Math.floor(Math.random() * 255 + 1);
 
   return `rgb(${ran1}, ${ran2}, ${ran3})`;
 }
+
+const randomCalc = (num, ranNum) => {
+  const flag = Math.round(Math.random());
+  if(flag == 1){
+    return ranNum + num;
+  }else{
+    return ranNum - num;
+  }
+}
+
+const getAnswerColor = (stage, baseColor)=> {
+  const colorArr = baseColor.slice(4,-1).split(',');
+  const num = Math.floor(Math.random() * (100-stage)+10);
+
+  const ran1 = randomCalc(num, parseInt(colorArr[0]));
+  const ran2 = randomCalc(num, parseInt(colorArr[1]));
+  const ran3 = randomCalc(num, parseInt(colorArr[2]));
+  console.log('num : ', num);
+  return `rgb(${ran1}, ${ran2}, ${ran3})`;
+  
+}
+
 
 const App = () => {
   const [answer, setAnswer] = useState();
@@ -19,13 +40,17 @@ const App = () => {
   const [isPlaying, setIsPlaying] = useState(true);
   const [score, setSocore] = useState(0);
   const [stage, setStage] = useState(1);
-  const [time, setTime] = useState(2);
+  const [time, setTime] = useState(15);
   const [itemList, setItemList] = useState([]);
 
-  const onSelect = (id) => {
-    console.log("Board에서 넘어온 id 값 =", id);
+  const onSelect = useCallback((id) => {
     if (id === answer) {
       // 정답일 때
+      const newScore = score+(stage * stage * time);
+      const newStage = stage + 1;
+      setSocore(newScore);
+      setStage(newStage);
+      setTime(15);
     } else {
       // 아닐 때
       if (time > 3) {
@@ -34,7 +59,7 @@ const App = () => {
         setTime(0);
       }
     }
-  };
+  },[itemList]);
 
   useEffect(() => {
     setIsPlaying(true);
@@ -43,10 +68,12 @@ const App = () => {
     // 0~ itme갯수 -1 사이의 숫자 중에서 난수 생성 -> answer 값으로 사용
     const ans = Math.floor(Math.random() * itemCnt);
     setAnswer(ans);
-    const getAnsColor = getRandomColor();
-    const getBaseColor = getRandomColor();
+    const baseColor = getBaseColor();
+    const getAnsColor = getAnswerColor(stage, baseColor);
+    console.log('baseColor : ', baseColor);
+    console.log('answerColor : ', getAnsColor);
     setAnswerColor(getAnsColor);
-    setBaseColor(getBaseColor);
+    setBaseColor(baseColor);
     const tmpList = [];
     for (let i = 0; i < itemCnt; i++) {
       tmpList.push(i);
@@ -59,11 +86,10 @@ const App = () => {
       let timer = setInterval(() => {
         setTime(time - 1);
       }, 1000);
-      console.log(time);
       if (time <= 0) {
         clearInterval(timer);
         setTimeout(() => {
-          setTime(5);
+          setTime(15);
           alert("game over");
           setStage(1);
           setIsPlaying(false);
@@ -73,18 +99,9 @@ const App = () => {
     }
   }, [time, isPlaying]);
 
-  // 타이머가 바뀌면 실행
-  console.log("itemList:", itemList);
-  console.log("answer : ", answer);
-  console.log("answerColor : ", answerColor);
-  console.log("baseColor : ", baseColor);
   return (
     <>
       <Header
-        answer={answer}
-        answerColor={answerColor}
-        baseColor={baseColor}
-        isPlaying={isPlaying}
         score={score}
         stage={stage}
         time={time}
@@ -94,11 +111,9 @@ const App = () => {
         answer={answer}
         answerColor={answerColor}
         baseColor={baseColor}
-        isPlaying={isPlaying}
         onSelect={onSelect}
-        score={score}
         stage={stage}
-        time={time}
+        
       />
     </>
   );

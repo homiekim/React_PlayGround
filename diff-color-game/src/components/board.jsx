@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { memo} from "react";
 import styled from "@emotion/styled";
 
 
@@ -18,8 +18,6 @@ const BoardItem = styled.div`
 `;
 const getLength = (stage) => {
     const divide = Math.floor(((stage+1)/2) + 1);
-    console.log('stage : ', stage);
-    console.log('divide : ', divide);
     const rst = (360 / divide) - 4;
     return rst;
 };
@@ -27,16 +25,12 @@ const Board = ({
   answer,
   answerColor,
   baseColor,
-  isPlaying,
-  score,
   stage,
-  time,
   onSelect,
   itemList,
 }) => {
   // 컨테이너 360*360
   const len = getLength(stage);
-  console.log('len : ', len);
   return (
     <BoardContainer>
         {
@@ -53,4 +47,4 @@ const Board = ({
   );
 };
 
-export default Board;
+export default memo(Board);
