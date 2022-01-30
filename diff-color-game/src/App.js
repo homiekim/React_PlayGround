@@ -11,12 +11,12 @@ const getBaseColor = () => {
   return `rgb(${ran1}, ${ran2}, ${ran3})`;
 }
 
-const randomCalc = (num, ranNum) => {
+const randomCalc = (ranNum, baseNum) => {
   const flag = Math.round(Math.random());
   if(flag == 1){
-    return ranNum + num;
+    return baseNum + ranNum;
   }else{
-    return ranNum - num;
+    return baseNum - ranNum;
   }
 }
 
@@ -59,7 +59,7 @@ const App = () => {
         setTime(0);
       }
     }
-  },[itemList]);
+  },[time, itemList]);
 
   useEffect(() => {
     setIsPlaying(true);
@@ -90,7 +90,7 @@ const App = () => {
         clearInterval(timer);
         setTimeout(() => {
           setTime(15);
-          alert("game over");
+          alert(`GAME OVER! \n스테이지 : ${stage}, 점수 : ${score}` );
           setStage(1);
           setIsPlaying(false);
         }, 1000);

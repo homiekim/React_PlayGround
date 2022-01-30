@@ -1,14 +1,14 @@
-import React, { memo} from "react";
+import React, { memo } from "react";
 import styled from "@emotion/styled";
 
 
-const BoardContainer = styled.div`
+const BoardContainer = memo(styled.div`
   width: 360px;
   height: 360px;
   display: flex;
   flex-flow: row wrap;
   justify-content: space-around;
-`;
+`);
 
 const BoardItem = styled.div`
   width: ${(props) => props.len}px;
@@ -21,6 +21,7 @@ const getLength = (stage) => {
     const rst = (360 / divide) - 4;
     return rst;
 };
+
 const Board = ({
   answer,
   answerColor,
@@ -47,4 +48,4 @@ const Board = ({
   );
 };
 
-export default memo(Board);
+export default Board;
