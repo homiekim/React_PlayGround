@@ -281,3 +281,8 @@ export default App;
 - 다른 색깔 찾기 게임 코드 정리(불필요한 props제거, 함수 로직 변경)
 - 스테이지 올라갈수록 두 random컬러가 비슷해지게 만듬 (rgb값 255에서 0 ~ 100-stage사이의 숫자를 빼주는 식으로 구현함)
 - 컴포넌트 최적화 (useCallback, memo 적용)
+
+### 01.30
+- 코드 오류 조금 수정
+- 구현 과정 글 포스팅 https://hoime.tistory.com/38?category=534509
+- netlify 배포 https://61f6b66cc78544388ab430ee--diff-color-game.netlify.app
