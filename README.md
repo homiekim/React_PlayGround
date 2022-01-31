@@ -17,8 +17,8 @@
   - result state에 new Date() 통해 시간을 저장했는데 result.reduce((a,c) => a+c)할 때 NaN이 나옴
   - 저장 할때 이전 시간에 start와 end를 붙여서 저장했는데([...prevState, start, end] 이런식으로) date 객체를 더하면 문자열 더해짐 그래서 reduce할때 NaN이 나오는 거였음
   - result저장할 때 end- start 값을 저장해서 해결
-  - date객체를 더하면 문자열 더해지고 빼면 밀리초로 빼짐 왜그런진 모르겠음 테스트해봄
-
+  - ~~date객체를 더하면 문자열 더해지고 빼면 밀리초로 빼짐 왜그런진 모르겠음 테스트해봄~~
+  > js에서 `+` 단항 연산자는 문자열에 사용경우 문자열 연결 연산자로 동작합니다. 두 객체를 더하면 문자열이 합쳐진 결과가 나옵니다. Date객체는 함수로 호출 시 문자열로 변환되서 반환됩니다.(https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Global_Objects/Date) `-` 연산자 경우는 피연산자의 부호를 반전시키는 부수효과를 가지며 숫자가 아닌 타입의 피연산자를 숫자타입으로 변환하여 반환합니다. 그래서 date객체를 빼면 시간 차이를 구할 수 있습니다.
   ```javascript
   const date1 = new Date();
 
