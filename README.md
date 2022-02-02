@@ -286,3 +286,19 @@ export default App;
 - 코드 오류 조금 수정
 - 구현 과정 글 포스팅 https://hoime.tistory.com/38?category=534509
 - netlify 배포 https://61f6b66cc78544388ab430ee--diff-color-game.netlify.app
+
+### 02.03
+- redux사용해서 todo-list 만들어봄
+- 디자인은 구글 검색해서 다운 받아서 클론함 (https://www.kindpng.com/imgv/ixJmiTJ_todo-list-template-app-hd-png-download/)
+- 수정하는 부분 에러나서 해결함
+  - update하는 함수를 dispatch할 때 id값이 필요한데 map함수로 넣어준 key값을 id로 쓰니까 안됨
+  ```js
+   <StyleList>
+      {todos.map((todo) => (
+        todo.updated ?
+        (<TodoUpdateForm key={todo.id} todo={todo} />):( <TodoItem key={todo.id} todo={todo} />)
+      ))}
+    </StyleList>
+  ```
+  - todo 객체를 넘겨줘서 updateForm 에서 const {id} = todo; 이렇게 사용하니까 정상 동작 하더라
+- 수정하는 updateForm 디자인 아직 덜함 나머지는 전부 구현완료
