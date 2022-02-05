@@ -25,6 +25,7 @@ export const StyleTodoInput = styled.input`
   margin-right: 22px;
 `;
 export const StyleButton = styled.button`
+  cursor : pointer;
   height: 40px;
   width: 14%;
   border: 1px solid black;

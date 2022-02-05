@@ -36,6 +36,6 @@ export const StyleSaveButton = styled.button`
   font-weight: bold;
   color: #a393eb;
   padding: 7px 15px;
-  
+  cursor:pointer;
   font-size : 1.1rem;
 `;
