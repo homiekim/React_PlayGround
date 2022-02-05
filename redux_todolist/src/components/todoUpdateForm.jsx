@@ -1,9 +1,17 @@
 import React, { useCallback, useState } from "react";
 import { useDispatch } from "react-redux";
-import { todoSetUpdate, todoUpdate } from '../modules/todos';
+import { todoSetUpdate, todoUpdate } from "../modules/todos";
+import {
+  StyleContainer,
+  StyleEditText,
+  StyleSaveButton,
+  StyleUpdateForm,
+  StyleUpdateinput,
+} from "./todoUpdateForm.style";
 
-const TodoUpdateForm = ({ id }) => {
-  const [value, setValue] = useState("");
+const TodoUpdateForm = ({ todo }) => {
+  const [value, setValue] = useState(todo.text);
+  const { id } = todo;
   const dispatch = useDispatch();
   const onChange = useCallback((e) => {
     setValue(e.target.value);
@@ -19,15 +27,13 @@ const TodoUpdateForm = ({ id }) => {
     e.preventDefault();
   };
   return (
-    <form onSubmit={onSubmit}>
-      <span>Edit : </span>
-      <input 
-        type="text"
-        value={value}
-        onChange={onChange}
-      />
-      <button type='submit'>SAVE</button>
-    </form>
+    <StyleContainer>
+      <StyleUpdateForm onSubmit={onSubmit}>
+        <StyleEditText>Edit : </StyleEditText>
+        <StyleUpdateinput type="text" value={value} onChange={onChange} />
+        <StyleSaveButton type="submit">SAVE</StyleSaveButton>
+      </StyleUpdateForm>
+    </StyleContainer>
   );
 };
 

@@ -21,7 +21,7 @@ const TodoList = () => {
     <StyleList>
       {todos.map((todo) => (
         todo.updated ?
-        (<TodoUpdateForm key={todo.id} />):( <TodoItem key={todo.id} todo={todo} />)
+        (<TodoUpdateForm key={todo.id} todo={todo} />):( <TodoItem key={todo.id} todo={todo} />)
       ))}
     </StyleList>
   );
