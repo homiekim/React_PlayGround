@@ -300,5 +300,9 @@ export default App;
       ))}
     </StyleList>
   ```
-  - todo 객체를 넘겨줘서 updateForm 에서 const {id} = todo; 이렇게 사용하니까 정상 동작 하더라
+- todo 객체를 넘겨줘서 updateForm 에서 const {id} = todo; 이렇게 사용하니까 정상 동작 하더라
 - 수정하는 updateForm 디자인 아직 덜함 나머지는 전부 구현완료
+
+### 02.04
+- updateForm css 수정
+- updateForm 렌더링 되면 input에 포커스 되게 
