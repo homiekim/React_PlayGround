@@ -1,12 +1,12 @@
+import Head from 'next/head';
 import react from 'react';
-import Navbar from '../components/Navbar';
-
+import HeadTitle from '../components/HeadTitle';
 
 const Home = () => {
   
   return (
     <>
-      <Navbar />
+      <HeadTitle title='Home' />
       <h1>Home!</h1>
     </>
   )

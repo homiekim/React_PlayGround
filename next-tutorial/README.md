@@ -46,3 +46,56 @@
 ### useRouter()
 - next에서 제공하는 Hook
 - back, pathname 등 location 정보를 얻을 수 있습니다.
+
+## AppComponet와 AppPage
+- Global Style을 추가하고 싶을 때는 AppComponent와 AppPage 개념을 알아야 합니다.
+- next에서는 style을 적용할 때 page를 고려해야 함
+
+### AppComponent
+- AppComponent는 일종의 어떤 컴포넌트의 청사진 입니다
+- pages 폴더에 _app.js 파일을 만들면 페이지를 렌더링 하기 전에 이 파일을 먼저 봄
+- nextJS는 _app.js 파일을 먼저 자동적으로 호출,
+- _app.js가 호출 될때 두가지 컴포넌트를 가짐
+  - Component : _app.js가 렌더링 하려는 컴포넌트를 Component 라는 Props로 받음
+  - pageProps
+- _app.js 를 활용해 Global Style을 작성 할 수 있다.
+- next에서 페이지에 css를 import 하려면 모듈형식 이여야함
+- _app.js 외에 global css를 import 할 수 없다. 
+
+
+## Common Patterns
+- next를 사용할 때 주로 사용되는 layout pattern이 존재
+- 보통 _app.js 에서 처리해줘야 할 일이 많기 때문에 컴포넌트의 크기를 최소화 하는 것이 좋음
+- Layout 컴포넌트를 따뤄 둬서 _app.js 안에서 사용하는 방식
+
+```js
+// Layout.js
+const Layout = ({children}) => {
+  return (
+    <>
+      <Navbar />
+      <div>
+        {/*  children은 react에서 제공하는 props로 컴포넌트 안에 다른 컴포넌트를 넣을 때 사용 가능 */}
+        {children} 
+      </div>
+    </>
+  )
+}
+
+export default Layout;
+
+// _app.js
+const App = ({Component, pageProps}) => {
+  return (
+    <Layout>
+      <Component {...pageProps} />
+    </Layout>
+  )
+}
+
+export default App;
+```
+
+## Head
+- next 에서는 Head를 설정할 수 있는 컴포넌트를 따로 제공
+- CRA에서는 head를 관리하기 위해 react-helmet 같은 라이브러리를 설치해서 사용
