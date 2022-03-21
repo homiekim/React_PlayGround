@@ -99,3 +99,44 @@ export default App;
 ## Head
 - next 에서는 Head를 설정할 수 있는 컴포넌트를 따로 제공
 - CRA에서는 head를 관리하기 위해 react-helmet 같은 라이브러리를 설치해서 사용
+
+## Redirect and Rewrite
+- redirection : api키를 숨기지 않음, next에서 허용
+
+### Redirect
+- next.config.js 에서 redirects 재설정 가능
+  - source : 유저가 이동하는 경로
+  - destination : 리다이렉션 해줄 경로
+  - permanent : true / flase 여부에 따라 브라우저 혹은 검색엔진이 redirection 정보 기억
+
+### Rewrite
+- rewirtes 는 유저를 redirect 시키기는 하지만 URL은 변하지 않습니다.
+- api 키를 숨기고 싶을 때 활용할 수 있습니다.
+
+```js
+// next.config.js
+const API_KEY = '여기에 api키 작성';
+const nextConfig = {
+  reactStrictMode: true,
+  async rewrites() {
+    return [
+      {
+        source: "/api/movies",
+        destination: `https://api.themoviedb.org/3/movie/popular?api_key=${API_KEY}`,
+      },
+    ];
+  },
+}
+```
+
+## Server Side Rendering
+- 유저가 Loading 컴포넌트를 보지 않고 벡엔드에서 데이터를 모두 가져오면 rendering 될 수 있게 하고 싶을 수 있다 
+- 다시말해, 데이터를 모두 받아오면 그제서야 rendering 하게 할 수 있음
+
+### getServerSideProps()
+- next에서 제공하는 함수(이름 바꾸면 안댐)
+- getServerSideProps 함수 내부의 코드는 서버에서 돌아가게 됩니다.
+- API 키 역시 이 함수를 통해 rewrite 없이 숨길 수 있습니다. (서버에서만 실행 되니까)
+- object를 return, 이 object 안에는 props라는 key가 들어감
+- 그럼 이 return 되는 object는 해당 컴포넌트에 props로 사용 가능 (이 props는 _app.js 에서 pageProps로 전달)
+- 정리 : getServerSideProps 함수를 통해 api요청을 통해 받아온 데이터가 있을 때 화면을 rendering하게  만들 수 있다.
