@@ -306,3 +306,8 @@ export default App;
 ### 02.04
 - updateForm css 수정
 - updateForm 렌더링 되면 input에 포커스 되게 
+
+### 03.19~21
+- nextJS tutorial
+- the movie db에 openAPI 사용 (fetch)
+- csr ssr 개념 
