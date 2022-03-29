@@ -311,3 +311,9 @@ export default App;
 - nextJS tutorial
 - the movie db에 openAPI 사용 (fetch)
 - csr ssr 개념 
+
+### 03.27
+- redex-toolkit 기본 개념 공부
+- 공식 문서 위주로 공부 후 counter, todolist 예제 만들어 봄
+- createAsyncThunk 나 RTK 쿼리는 아직 잘 모르겠음
+- redux-toolkit 사용한 비동기 요청 하는 방법 위주로 공부할 예정
