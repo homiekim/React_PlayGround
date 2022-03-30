@@ -1,27 +1,15 @@
-import React, { useEffect } from "react";
+import React from "react";
 import Board from "./components/board";
 import Header from "./components/header";
 import useGame from "./hooks/useGame";
 
 const App = () => {
-  const {
-    gameState: { stage, score, remainSecond, answerColor, worongColor, answerIndex },
-    clickHandler,
-    start
-  } = useGame();
-  useEffect(()=>{
-    start();
-  },[]);
+  const {gameState, action} = useGame();
+  console.log("App state : ", gameState);
   return (
     <>
-      <Header stage={stage} remainSecond={remainSecond} score={score} />
-      <Board
-        stage={stage}
-        clickHandler={clickHandler}
-        answerColor={answerColor}
-        worongColor={worongColor}
-        answerIndex={answerIndex}
-      />
+      <Header {...gameState}  />
+      <Board {...gameState} onSelect={action.clickHandler} />
     </>
   );
 };
