@@ -317,3 +317,9 @@ export default App;
 - 공식 문서 위주로 공부 후 counter, todolist 예제 만들어 봄
 - createAsyncThunk 나 RTK 쿼리는 아직 잘 모르겠음
 - redux-toolkit 사용한 비동기 요청 하는 방법 위주로 공부할 예정
+
+### 03.29 ~ 30
+- diff-color-game 리팩토링
+- props 부모에서 전달하는 것 아니라
+- useReducer 사용하여 전역적으로 관리
+- 커스텀 훅 사용하여 코드 간결하게
