@@ -1,9 +1,8 @@
-import React, {
+import  {
   useCallback,
   useEffect,
   useReducer,
   useRef,
-  useState,
 } from "react";
 import { initialState, reducer } from "../reducer/reducer";
 
@@ -45,8 +44,10 @@ const useGame = () => {
     }
     alert(`GAME OVER!\n스테이지: ${gameState.stage}, 점수: ${gameState.score}`);
     start();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [gameState.isPlay]);
 
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(start, []);
 
   return {

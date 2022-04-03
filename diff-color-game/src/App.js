@@ -113,7 +113,6 @@ const App = () => {
         baseColor={baseColor}
         onSelect={onSelect}
         stage={stage}
-        
       />
     </>
   );
