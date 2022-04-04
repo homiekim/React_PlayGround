@@ -21,7 +21,7 @@ export const movieSlice = createSlice({
     .addCase(loadMovie.fulfilled, (state, action) =>{
       state.loadMovieLoading = false;
       state.loadMovieDone = true;
-      state.movieList = [...state.movieList].concat(action.payload)
+      state.movieList = [...state.movieList].concat(action.payload.results)
     })
     .addCase(loadMovie.rejected, (state, action)=>{
       state.loadMovieLoading = false;

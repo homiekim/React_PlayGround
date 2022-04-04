@@ -1,8 +1,8 @@
 import styled from '@emotion/styled/macro';
 
 export const StyleApp = styled.div`
-  width : 100%auto;
-  height : 100vh;
+  width : 100%;
+  height : 100%;
   background-color: #ebebeb;
 `
 export const StyleContent = styled.div`
