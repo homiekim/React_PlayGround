@@ -1,8 +1,9 @@
-import React, { useEffect } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { loadMovie } from "../actions/movie";
 import styled from "@emotion/styled";
 import { useInView } from 'react-intersection-observer';
+import DetailMovie from './detailMovie';
 
 const StyleMovieContainer = styled.div`
   display: grid;
@@ -36,13 +37,21 @@ const StyleButton = styled.button`
 
 
 const MoiveContent = ({ movie }) => {
+  const [onDetail, setOnDetail] = useState(false);
+  const showDetail = useCallback(() =>{
+    setOnDetail(true);
+  },[]);
+  const onClose = useCallback(()=>{
+    setOnDetail(false);
+  },[]);
   return (
     <StyleMovieCard>
       <img
           src={`https://image.tmdb.org/t/p/w300/${movie.poster_path}`}
           alt="poster"
         />
-        <StyleButton>Show Detail</StyleButton>
+        <StyleButton onClick={showDetail}>Show Detail</StyleButton>
+        {onDetail && <DetailMovie movieId={movie.id} onClose={onClose}/> }
     </StyleMovieCard>
   );
 };
@@ -67,7 +76,8 @@ const MovieContainer = () => {
         dispatch(loadMovie());
       }
   },[inView]);
- 
+  
+  console.log(movieList);
   return (
     <StyleMovieContainer>
       {movieList.map((item) => (
