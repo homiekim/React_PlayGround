@@ -323,3 +323,9 @@ export default App;
 - props 부모에서 전달하는 것 아니라
 - useReducer 사용하여 전역적으로 관리
 - 커스텀 훅 사용하여 코드 간결하게
+
+### 04.03 ~ 05
+- react-intersection-observer 라이브러리 사용해서 인피니트 스크롤 구현
+- openAPI 사용하여 영화 정보 20개씩 받아오고 스크롤이 가장 아래로 내려가면 20개 씩 계속 요청
+- redux-toolkit 사용하여 createAsyncThunk 사용하여 비동기 요청
+- 영화 세부 정보를 모달 식으로 
