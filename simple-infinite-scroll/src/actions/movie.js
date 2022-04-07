@@ -7,11 +7,12 @@ function getRandNumber() {
 }
 
 const url  = 'https://api.themoviedb.org/3/movie/popular';
+const my_api_key = process.env.REACT_APP_MOVIE_API_KEY;
 
 export const loadMovie = createAsyncThunk('get/loadMovie', async (data) =>{
   const response = await axios.get(url, {
     params:{
-      api_key: '8ea4bd18073fca9860a9d642ad94921b',
+      api_key: my_api_key,
       page : getRandNumber(),
       language : 'en-US',
     }
