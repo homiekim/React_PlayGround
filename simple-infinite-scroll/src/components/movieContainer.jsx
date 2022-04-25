@@ -67,7 +67,6 @@ const MovieContainer = () => {
       dispatch(loadMovie());
       return;
     }
-    
   }, []);
 
   useEffect(()=>{
