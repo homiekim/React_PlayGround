@@ -1,0 +1,28 @@
+{
+  "name": "react-query-ex",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint",
+    "server": "json-server --watch db.json --port 5000"
+  },
+  "dependencies": {
+    "axios": "^0.27.1",
+    "json-server": "^0.17.0",
+    "next": "12.1.5",
+    "react": "18.1.0",
+    "react-dom": "18.1.0",
+    "react-query": "^3.38.0"
+  },
+  "devDependencies": {
+    "@types/node": "17.0.29",
+    "@types/react": "18.0.8",
+    "@types/react-dom": "18.0.0",
+    "eslint": "8.14.0",
+    "eslint-config-next": "12.1.5",
+    "typescript": "4.6.3"
+  }
+}
