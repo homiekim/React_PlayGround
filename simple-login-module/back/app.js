@@ -5,7 +5,7 @@ const session = require('express-session');
 const cookieParser = require('cookie-parser');
 const userRouter = require('./routes/user');
 const db = require('./models');
-const morgan = requre('morgan');
+const morgan = require('morgan');
 
 const app = express();
 dotenv.config();

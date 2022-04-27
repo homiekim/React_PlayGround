@@ -19,9 +19,6 @@ router.post('/signup', async(req,res,next)=> {
   }
 });
 
-routet.post('/login', async(req,res,next) => {
-  
-});
 
 
 module.exports = router;
