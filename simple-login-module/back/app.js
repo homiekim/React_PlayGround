@@ -6,6 +6,8 @@ const cookieParser = require('cookie-parser');
 const userRouter = require('./routes/user');
 const db = require('./models');
 const morgan = require('morgan');
+const passport = require('passport');
+const passportConfig = require('./passport');
 
 const app = express();
 dotenv.config();
@@ -15,6 +17,8 @@ db.sequelize.sync()
     console.log('db 연결 성공');
   })  
   .catch(console.error);
+
+//passportConfig();
 
 app.use(morgan('dev'));
 
@@ -26,6 +30,9 @@ app.use(cors({
 app.use(express.json());
 app.use(express.urlencoded({ extended : true}));
 app.use(cookieParser(process.env.COOKIE_SECRET));
+//app.use(passport.initialize());
+app.use(passport.initialize());
+passportConfig();
 
 
 app.get('/', (req,res) => {

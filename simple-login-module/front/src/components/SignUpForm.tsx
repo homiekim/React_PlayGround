@@ -2,12 +2,12 @@ import React, { useCallback, useState } from 'react';
 import { signUpAPI } from '../api/user';
 
 const SignUpForm = () => {
-  const [id, setId] = useState("");
+  const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [nickname, setNickname] = useState("");
 
-  const onChangeId = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
-    setId(e.target.value);
+  const onChangeEmail = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
+    setEmail(e.target.value);
   }, []);
   const onChangePassowrd = useCallback(
     (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -21,9 +21,9 @@ const SignUpForm = () => {
 
   const onSubmit = useCallback((e : React.MouseEvent<HTMLButtonElement>) =>{
     e.preventDefault();
-    signUpAPI({id, password, nickname})
+    signUpAPI({email, password, nickname})
     
-  },[id, password, nickname]);
+  },[email, password, nickname]);
 
   return (
     <div>
@@ -34,7 +34,7 @@ const SignUpForm = () => {
         </div>
         <div>
           아이디: 
-          <input type="text" value={id} onChange={onChangeId} />
+          <input type="text" value={email} onChange={onChangeEmail} />
         </div>
         <div>
           비밀번호 :

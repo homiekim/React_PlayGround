@@ -12,7 +12,7 @@ const App = () => {
   return (
     <QueryClientProvider client={queryClientRef.current}>
       <Routes>
-        <Route path="/" element={<Login />} />
+        <Route path="login" element={<Login />} />
         <Route path="signup" element={<Signup />} />
       </Routes>
     </QueryClientProvider>

@@ -1,7 +1,7 @@
 module.exports = (sequelize, DataTypes) => {
   const User = sequelize.define('User', {
     // id는 mySQL에서 기본적으로 넣어 줌
-    userid: {
+    email: {
       type: DataTypes.STRING(30),
       allowNull : false, // 필수 요부
       unique : true, // 고유값 설정
