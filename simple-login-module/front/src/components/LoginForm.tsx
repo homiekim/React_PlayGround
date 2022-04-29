@@ -1,6 +1,6 @@
 import React, { useCallback, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { logInAPI } from '../api/user';
+import { checkAPI, logInAPI, refreshAPI } from '../api/user';
 
 const LoginForm = () => {
   const [email, setEmail] = useState("");
@@ -22,6 +22,14 @@ const LoginForm = () => {
     console.log(data);
   },[email, password]);
 
+  const onAuthCheck = useCallback(async () => {
+    const data = await checkAPI();
+    console.log(data);
+  },[]);
+  const onAuthRefresh = useCallback(async () => {
+    const data = await refreshAPI({email});
+    console.log(data);
+  },[email]);
   return (
     <div>
       <form>
@@ -36,6 +44,9 @@ const LoginForm = () => {
         <button type='submit' onClick={onLogIn}>로그인</button>
         <button onClick={() => navigate("/signup")}>회원가입</button>
       </form>
+      <button onClick={onAuthCheck}>check</button>
+      <button onClick={onAuthRefresh}>refresh</button>
+
     </div>
   );
 };
