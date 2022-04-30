@@ -1,5 +1,6 @@
 import React, { useCallback, useState } from 'react';
 import { signUpAPI } from '../api/user';
+import style from '../style/signup.module.css';
 
 const SignUpForm = () => {
   const [email, setEmail] = useState("");
@@ -29,18 +30,15 @@ const SignUpForm = () => {
     <div>
       <form>
       <div>
-          닉네임 :
-          <input type="text" value={nickname} onChange={onChangeNickname} />
+          <input className={style.input} placeholder='닉네임 입력' type="text" value={nickname} onChange={onChangeNickname} />
         </div>
         <div>
-          아이디: 
-          <input type="text" value={email} onChange={onChangeEmail} />
+          <input className={style.input} placeholder='이메일 입력' type="text" value={email} onChange={onChangeEmail} />
         </div>
         <div>
-          비밀번호 :
-          <input type="password" value={password} onChange={onChangePassowrd} />
+          <input className={style.input} placeholder='비밀번호 입력' type="password" value={password} onChange={onChangePassowrd} />
         </div>
-        <button type='submit' onClick={onSubmit}>회원가입 하기</button>
+        <button className={style.button} type='submit' onClick={onSubmit}>회원가입 하기</button>
       </form>
     </div>
   );

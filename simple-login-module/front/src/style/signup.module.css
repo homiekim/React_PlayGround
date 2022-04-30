@@ -1,0 +1,20 @@
+.input {
+  width: 343px;
+  height: 52px;
+  border-radius: 8px;
+  margin-bottom: 16px;
+  background: #e3e3e3;
+  border: 1px solid darkgrey;
+}
+
+.button {
+  width: 343px;
+  height: 52px;
+  margin-top: 24px;
+  background: #c3b3db;
+  border-radius: 8px;
+  color: white;
+  border: none;
+  font-size: 1.1em;
+  cursor: pointer;
+}
