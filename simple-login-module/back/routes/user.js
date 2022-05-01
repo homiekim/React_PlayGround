@@ -6,6 +6,28 @@ const jwt = require("jsonwebtoken");
 const { verifyToken } = require('./middleware');
 const router = express.Router();
 
+router.get("/",async(req, res, next) => {
+  try{
+    const token = req.cookies.RefreshToken;
+    if(token){
+      const decoded = jwt.verify(token, process.env.REFRESH_SECRET);
+      const userInfo = await User.findOne({
+        where: {id : decoded.id},
+        attributes: {
+          exclude: ["password"],
+        }
+      });
+      console.log(userInfo);
+      res.status(200).json(userInfo);
+    }else{ 
+      res.status(200).json(null);
+    }
+  }catch(err) {
+    console.error(err);
+    next(err);
+  }
+});
+
 router.post("/signup", async (req, res, next) => {
   try {
     const hashedPassword = await bcrypt.hash(req.body.password, 10);

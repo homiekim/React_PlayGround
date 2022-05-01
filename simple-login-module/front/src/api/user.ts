@@ -27,3 +27,7 @@ export function refreshAPI(data: {email : string}) {
     return response.data;
   });
 }
+
+export function getUserInfoAPI() {
+  return axios.get('/user').then((response) => response.data);
+}

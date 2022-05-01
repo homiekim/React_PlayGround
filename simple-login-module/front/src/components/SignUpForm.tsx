@@ -23,7 +23,6 @@ const SignUpForm = () => {
   const onSubmit = useCallback((e : React.MouseEvent<HTMLButtonElement>) =>{
     e.preventDefault();
     signUpAPI({email, password, nickname})
-    
   },[email, password, nickname]);
 
   return (
