@@ -3,8 +3,10 @@ import { Route, Routes } from "react-router-dom";
 import Login from "./pages/login";
 import Signup from "./pages/signup";
 import { QueryClient, QueryClientProvider } from "react-query";
+import { ReactQueryDevtools } from 'react-query/devtools'
 import style from "./style/App.module.css";
 import logo from "./asset/logo.png";
+import Home from './components/Home';
 
 const App = () => {
   const queryClientRef = useRef<QueryClient>();
@@ -20,12 +22,14 @@ const App = () => {
           </div>
           <div className={style.formSection}>
             <Routes>
+              <Route path="/" element={<Home />} />
               <Route path="login" element={<Login />} />
               <Route path="signup" element={<Signup />} />
             </Routes>
           </div>
         </div>
       </div>
+      <ReactQueryDevtools initialIsOpen={false} position='bottom-right' />
     </QueryClientProvider>
   );
 };

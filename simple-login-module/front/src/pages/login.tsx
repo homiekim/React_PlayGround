@@ -12,7 +12,7 @@ const Login = () => {
   return (
     <div className={style.container}>
       <div className={style.inner}>
-        {me ? <SuccessLogin /> :<LoginForm />}
+        {me ? <SuccessLogin me={me}/> :<LoginForm />}
       </div>
     </div>
   );

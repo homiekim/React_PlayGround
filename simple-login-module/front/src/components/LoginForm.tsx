@@ -1,13 +1,22 @@
 import React, { useCallback, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { checkAPI, logInAPI, refreshAPI } from "../api/user";
+import { logInAPI } from "../api/user";
 import style from "../style/loginForm.module.css";
 import logo from "../asset/logo.png";
+import { useMutation, useQueryClient } from 'react-query';
+import { User } from '../userType';
+import { AxiosError } from 'axios';
 
 const LoginForm = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
+  const queryClient = useQueryClient();
+  const mutation = useMutation<User, AxiosError, {email: string; password: string}>('user', logInAPI, {
+    onSuccess: (user) => {
+      queryClient.setQueriesData('user', user);
+    }
+  })
 
   const onChangeEmail = useCallback(
     (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -24,20 +33,11 @@ const LoginForm = () => {
   const onLogIn = useCallback(
     async (e: React.MouseEvent<HTMLButtonElement>) => {
       e.preventDefault();
-      const data = await logInAPI({ email, password });
-      console.log(data);
+      mutation.mutate({email, password});
     },
-    [email, password]
+    [email, password, mutation]
   );
 
-  const onAuthCheck = useCallback(async () => {
-    const data = await checkAPI();
-    console.log(data);
-  }, []);
-  const onAuthRefresh = useCallback(async () => {
-    const data = await refreshAPI({ email });
-    console.log(data);
-  }, [email]);
 
   return (
     <div>
@@ -78,12 +78,7 @@ const LoginForm = () => {
           회원가입
         </button>
       </div>
-      <button onClick={onAuthCheck} hidden>
-        check
-      </button>
-      <button onClick={onAuthRefresh} hidden>
-        refresh
-      </button>
+      
     </div>
   );
 };

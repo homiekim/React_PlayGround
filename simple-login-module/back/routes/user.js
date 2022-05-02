@@ -3,26 +3,26 @@ const bcrypt = require("bcrypt");
 const { User } = require("../models");
 const passport = require("passport");
 const jwt = require("jsonwebtoken");
-const { verifyToken } = require('./middleware');
+const { verifyToken } = require("./middleware");
 const router = express.Router();
 
-router.get("/",async(req, res, next) => {
-  try{
+router.get("/", async (req, res, next) => {
+  try {
     const token = req.cookies.RefreshToken;
-    if(token){
+    if (token) {
       const decoded = jwt.verify(token, process.env.REFRESH_SECRET);
       const userInfo = await User.findOne({
-        where: {id : decoded.id},
+        where: { id: decoded.id },
         attributes: {
           exclude: ["password"],
-        }
+        },
       });
       console.log(userInfo);
       res.status(200).json(userInfo);
-    }else{ 
+    } else {
       res.status(200).json(null);
     }
-  }catch(err) {
+  } catch (err) {
     console.error(err);
     next(err);
   }
@@ -53,7 +53,7 @@ router.post("/login", (req, res, next) => {
       return res.status(401).send(info.reason);
     }
     return req.login(user, { session: false }, async (loginErr) => {
-      console.log('user : ', user);
+      console.log("user : ", user);
       if (loginErr) {
         console.error(loginErr);
         return next(loginErr);
@@ -69,23 +69,26 @@ router.post("/login", (req, res, next) => {
         httpOnly: true,
         maxAge: 1000 * 60 * 60 * 24 * 14,
       });
-      return res.status(200).json({ access_token });
+      const userInfo = await User.findOne({
+        where: { id: user.id },
+        attributes: {
+          exclude: ["password"],
+        },
+      });
+      return res.status(200).json({ access_token , userInfo});
     });
   })(req, res, next);
 });
 
-router.post(
-  "/refresh",
-  verifyToken,
-  async (req, res) => {
-    const email = req.body.email;
-    const user = await User.findOne({where: { email }})
-    const access_token = jwt.sign({ id: user.id }, process.env.JWT_SECRET, {
-      expiresIn: "1m",
-    });
-    return res.status(200).json({ access_token });
-  }
-);
+router.post("/refresh", verifyToken, async (req, res) => {
+  const token = req.cookies.RefreshToken;
+  const decoded = jwt.verify(token, process.env.REFRESH_SECRET);
+  const user = await User.findOne({ where: { id: decoded.id } });
+  const access_token = jwt.sign({ id: user.id }, process.env.JWT_SECRET, {
+    expiresIn: "1m",
+  });
+  return res.status(200).json({ access_token });
+});
 
 router.get(
   "/check",

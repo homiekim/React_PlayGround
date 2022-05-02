@@ -1,0 +1,15 @@
+.container {
+  text-align: center;
+}
+
+.button {
+  width: 343px;
+  height: 52px;
+  margin-top: 24px;
+  background: #c3b3db;
+  border-radius: 8px;
+  color: white;
+  border: none;
+  font-size: 1.1em;
+  cursor: pointer;
+}

@@ -9,12 +9,14 @@ const { User } = require('../models');
 const jwtOptions = {
   jwtFromRequest: ExtractJWT.fromAuthHeaderAsBearerToken(),
   secretOrKey: process.env.JWT_SECRET,
+  ignoreExpiration: false,
 }
 
 module.exports = () => {
   passport.use(new JWTStrategy(jwtOptions, async (jwtPayload, done) => {
     try {
       const user = await User.findOne({ where: { id: jwtPayload.id } });
+      console.log("jwt strategy : ",user);
       if (user) {
         return done(null, user);
       }
