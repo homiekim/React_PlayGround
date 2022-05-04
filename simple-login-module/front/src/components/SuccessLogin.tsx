@@ -1,5 +1,5 @@
 import React, { useCallback } from 'react';
-import { checkAPI, refreshAPI } from '../api/user';
+import { checkAPI } from '../api/user';
 import { User } from '../userType';
 import style from '../style/Home.module.css';
 
