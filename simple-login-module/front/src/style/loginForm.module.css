@@ -1,6 +1,6 @@
 .input {
-  width: 343px;
-  height: 52px;
+  width: 100%;
+  height: 48px;
   border-radius: 8px;
   margin-bottom: 16px;
   background: #e3e3e3;
@@ -8,7 +8,7 @@
 }
 
 .button {
-  width: 343px;
+  width: 280px;
   height: 52px;
   margin-top: 24px;
   background: #c3b3db;
@@ -21,7 +21,7 @@
 
 .Oauth {
   text-align: center;
-  margin-top: 60px;
+  margin-top: 16px;
 
 }
 
@@ -46,5 +46,5 @@
 .signUpContainer {
   width: 100%;
   text-align: center;
-  margin: 48px 0px;
+  margin: 16px 0px;
 }

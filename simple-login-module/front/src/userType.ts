@@ -3,3 +3,12 @@ export type User = {
   password?: string,
   nickname: string,
 }
+
+type videoList = [
+  {
+    videoId: string,
+    category: string,
+    thumbnail: string,
+    
+  }
+]

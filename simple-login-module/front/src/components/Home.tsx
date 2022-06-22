@@ -16,21 +16,12 @@ const Home = () => {
         로그인 하러 가기
       </button>
       <CustomInput
-        inputType="email"
-        isError={false}
+        width={343}
+        height={52}
+        inputType="url"
         value={test}
         onChange={onChangeTest}
-      />
-      <CustomInput
-        inputType="password"
-        value={test}
-        onChange={onChangeTest}
-      />
-      <CustomInput
-        inputType="passwordChk"
-        isError={false}
-        value={test}
-        onChange={onChangeTest}
+        isError={true}
       />
     </div>
   );

@@ -4,8 +4,6 @@
   margin-bottom: 16px;
 }
 .input {
-  width: 343px;
-  height: 52px;
   border: 1.5px solid #dadada;
   box-sizing: border-box;
   border-radius: 8px;
@@ -21,7 +19,6 @@ input:focus {
 .icon {
   z-index: 3;
   position: absolute;
-  transform: translate(306px, -34px);
 }
 
 label {
