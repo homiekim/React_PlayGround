@@ -37,6 +37,7 @@ const CartList = ({ items }: { items: CartType[] }) => {
       inputElem.current!.checked = allChecked;
     });
   };
+
   const handleCheckboxChanged = (e?: SyntheticEvent) => {
     if (!formRef.current) return;
     const targetInput = e?.target as HTMLInputElement;
@@ -55,7 +56,7 @@ const CartList = ({ items }: { items: CartType[] }) => {
     } else {
       alert("결제할 대상이 없어요");
     }
-  }, []);
+  }, [checkedCartData]);
 
   useEffect(() => {
     checkedCartData.forEach((item) => {
@@ -74,7 +75,7 @@ const CartList = ({ items }: { items: CartType[] }) => {
     }, []);
     setCheckedCartData(checkedItems);
   }, [items, formData]);
-
+  console.log("Checked Cart Data : ", checkedCartData);
   return (
     <div>
       <form ref={formRef} onChange={handleCheckboxChanged}>

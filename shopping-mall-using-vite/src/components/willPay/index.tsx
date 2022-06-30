@@ -1,6 +1,7 @@
 import React, { SyntheticEvent } from "react";
 import { useRecoilValue } from "recoil";
 import { checkedCartState } from "../../recoils/cart";
+import ItemData from '../cart/item-data';
 
 const WillPay = ({
   submitTitle,
@@ -19,6 +20,7 @@ const WillPay = ({
       {
         checkedItems.map(({imageUrl,price,title,amount,id})=>(
           <li key={id}>
+             <ItemData imageUrl={imageUrl} price={price} title={title} />
             <p>수량: {amount}</p>
             <p>금액: {price * amount}</p>
           </li>
