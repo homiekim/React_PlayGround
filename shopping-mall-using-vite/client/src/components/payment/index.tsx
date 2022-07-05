@@ -7,6 +7,7 @@ import { graphqlFetcher } from "../../queryClient";
 import { checkedCartState } from "../../recoils/cart";
 import WillPay from "../willPay";
 import PaymentModal from "./modal";
+import TestModal from './test-modal';
 
 type PayInfo = string;
 
@@ -16,6 +17,7 @@ const Payment = () => {
     useRecoilState(checkedCartState);
 
   const [modalShown, toggleModal] = useState(false);
+  const [testModal, setTestModal] = useState(false);
   const { mutate: executePay } = useMutation((payInfos: PayInfo[]) =>
     graphqlFetcher(EXECUTE_PAY, payInfos)
   );
@@ -33,11 +35,16 @@ const Payment = () => {
   const cancel = () => {
     toggleModal(false);
   };
+  const closeHandler = () => {
+    setTestModal(false)
+  }
 
   return (
     <div>
       <WillPay submitTitle="결제하기" handleSubmit={showModal} />
       <PaymentModal show={modalShown} proceed={proceed} cancel={cancel} />
+      <TestModal show={testModal} onClose={closeHandler} />
+      <button onClick={() => setTestModal(true)}>test</button>
     </div>
   );
 };
