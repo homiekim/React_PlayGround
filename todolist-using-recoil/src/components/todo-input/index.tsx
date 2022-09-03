@@ -1,8 +1,10 @@
 import React, { ChangeEvent, useState } from "react";
-import { todoAtoms } from "../../recoil/atoms";
+import {  todoAtom } from "../../recoil/atoms";
 import { useRecoilState } from "recoil";
+import useTodo from '../../hooks/todo-hooks';
 const TodoInput = () => {
-  const [todoList, setTodoList] = useRecoilState(todoAtoms);
+  const {todoList, setTodoList, AddTodo} = useTodo();
+  //const [todoList, setTodoList] = useRecoilState(todoAtom);
   const [todoInput, setTodoInput] = useState<string>("");
 
   const onChangeTodoInput = (e: ChangeEvent<HTMLInputElement>) => {
@@ -11,17 +13,22 @@ const TodoInput = () => {
 
   const onClickHnadler = () => {
     const newId = todoList.length !== 0 ? todoList.length + 1 : 0;
-    setTodoList((prev) => [
-      ...prev,
-      {
-        id: newId,
-        contents: todoInput,
-        isDone: false,
-      },
-    ]);
-    setTodoInput('');
+    // setTodoList((prev) => [
+    //   ...prev,
+    //   {
+    //     id: newId,
+    //     contents: todoInput,
+    //     isDone: false,
+    //   },
+    // ]);
+    AddTodo({
+      id:newId,
+      contents:todoInput,
+      isDone:false,
+    })
+    setTodoInput("");
   };
-  
+
   return (
     <section>
       <input value={todoInput} onChange={onChangeTodoInput} />
