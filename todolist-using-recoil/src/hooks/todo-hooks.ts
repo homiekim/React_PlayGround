@@ -1,6 +1,6 @@
 import { todoAtom } from "./../recoil/atoms";
 import { SetterOrUpdater, useRecoilState } from "recoil";
-import React from "react";
+import  { useCallback } from "react";
 import { todoType } from "../typings/todo";
 interface ReturnType {
   todoList: Array<todoType>;
@@ -12,23 +12,17 @@ interface ReturnType {
 const useTodo = (): ReturnType => {
   const [todoList, setTodoList] = useRecoilState(todoAtom);
 
-  const AddTodo = (todo: todoType) => {
+  const AddTodo = useCallback((todo: todoType) => {
     setTodoList((prev) => [...prev, todo]);
-  };
+  },[setTodoList]);
 
-  const DeleteTodo = (id:number) => {
+  const DeleteTodo = useCallback((id:number) => {
     setTodoList((prev) => prev.filter(v => v.id !== id));
-  };
+  },[setTodoList]);
   
-  const ToggleDone = (id:number) =>{
-    setTodoList((prev) => prev.map(v =>{
-      if(v.id === id){
-        return {...v, isDone: !v.isDone};
-      }else {
-        return v;
-      }
-    }))
-  }
+  const ToggleDone = useCallback((id:number) =>{
+    setTodoList((prev) => prev.map(v => v.id === id ? {...v, isDone: !v.isDone} : v))
+  },[setTodoList]);
 
   return {
     todoList,

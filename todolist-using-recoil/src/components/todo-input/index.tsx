@@ -1,9 +1,8 @@
 import React, { ChangeEvent, useState } from "react";
-import {  todoAtom } from "../../recoil/atoms";
-import { useRecoilState } from "recoil";
+
 import useTodo from '../../hooks/todo-hooks';
 const TodoInput = () => {
-  const {todoList, setTodoList, AddTodo} = useTodo();
+  const {todoList, AddTodo} = useTodo();
   //const [todoList, setTodoList] = useRecoilState(todoAtom);
   const [todoInput, setTodoInput] = useState<string>("");
 

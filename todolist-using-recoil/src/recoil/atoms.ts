@@ -1,10 +1,37 @@
-import { atom } from "recoil";
+import { atom, selector } from "recoil";
 import { todoType } from "../typings/todo";
 
 export const todoAtom = atom<Array<todoType>>({
   key: "todolist",
   default: [],
 });
+
+export const statusAtom = atom<string>({
+  key: "status",
+  default: "All",
+});
+
+export const filterSelector = selector({
+  key: "fliterTodoList",
+  get: ({ get }) => {
+    const status = get(statusAtom);
+    const todolist = get(todoAtom);
+    if (status === "All") {
+      return todolist;
+    } else if (status === "Done") {
+      return todolist.filter((v) => v.isDone === true);
+    } else {
+      return todolist.filter((v) => v.isDone === false);
+    }
+  },
+  set:({get, set})=>{
+    const doneList = get(todoAtom).map(v => v.isDone ? v : {...v, isDone :true});
+    set(todoAtom, doneList);
+  }
+});
+
+
+
 
 // export const addSelector = selector<Array<todoType>>({
 //   key:'addSelector',
@@ -13,13 +40,11 @@ export const todoAtom = atom<Array<todoType>>({
 //   },
 //   set:({get, set}, newValue) =>{
 //     const prevArray = get(todoAtom);
-   
+
 //     }
 //     set(todoAtom, prevArray.concat(newValue[0]));
 //   }
 // });
-
-
 
 // export const AddTodo = (newTodo: todoType) =>
 //   useRecoilCallback(({ snapshot, set }) => (newTodo:todoType) => {
