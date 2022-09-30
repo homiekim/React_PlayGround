@@ -1,5 +1,5 @@
 import React, { SyntheticEvent } from 'react';
-import { useRecoilState, useSetRecoilState } from 'recoil';
+import { useRecoilState } from 'recoil';
 import { statusAtom } from '../../recoil/atoms';
 
 const TodoFilter = () => {

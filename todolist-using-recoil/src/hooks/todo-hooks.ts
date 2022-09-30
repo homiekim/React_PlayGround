@@ -2,6 +2,7 @@ import { todoAtom } from "./../recoil/atoms";
 import { SetterOrUpdater, useRecoilState } from "recoil";
 import  { useCallback } from "react";
 import { todoType } from "../typings/todo";
+
 interface ReturnType {
   todoList: Array<todoType>;
   setTodoList: SetterOrUpdater<Array<todoType>>;
@@ -9,6 +10,7 @@ interface ReturnType {
   DeleteTodo: (id:number) => void;
   ToggleDone:(id:number) => void;
 }
+
 const useTodo = (): ReturnType => {
   const [todoList, setTodoList] = useRecoilState(todoAtom);
 

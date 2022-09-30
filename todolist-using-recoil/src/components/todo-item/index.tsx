@@ -1,7 +1,5 @@
 import React from "react";
-import { todoAtom } from "../../recoil/atoms";
 import { todoType } from "../../typings/todo";
-import { useSetRecoilState } from "recoil";
 import useTodo from '../../hooks/todo-hooks';
 const TodoItem = ({ item }: { item: todoType }) => {
   const {DeleteTodo, ToggleDone} = useTodo();
